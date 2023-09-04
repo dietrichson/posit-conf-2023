@@ -1,0 +1,469 @@
+---
+title: "Teaching Data Science in Adverse Circumstances"
+subtitle: "Posit Cloud and Quarto to the Rescue"
+author: "Aleksander Dietrichson, PhD"
+format:
+  revealjs: 
+    theme: dark
+  #  fontsize: 36
+    default-image-extension: svg
+    monofont: "JetBrains Mono"
+    header-includes: |
+      <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/css?family=JetBrains Mono" type="text/css"/>
+---
+
+## 
+
+::: columns
+::: {.column width="60%"}
+![](images/argentina.png)
+:::
+
+::: {.column width="40%"}
+### Argentina
+
+-   Population: \~ 45 M
+
+-   GDP/Capita:  \~13K
+
+-   Poverty rate: 46%
+
+-   Inflation: 113.4%
+:::
+:::
+
+## 
+
+::: columns
+::: {.column width="40%"}
+### Buenos Aires
+
+![](images/buenos_aires.jpeg)
+
+-   Capital City
+
+-   Largest Metro Area
+
+-   Home to \~ 14M
+:::
+
+::: {.column width="60%"}
+### UNSAM
+
+![](images/san-martin-students.jpg){width="457"}
+
+-   Public University
+
+-   \~ 26K Students
+
+-   Bachelor, Masters and Doctorate
+:::
+:::
+
+## Furthermore...
+
+-   \< 42% of students have access to Laptops/Computers
+-   \> 70% Work while studying
+-   «Escuela de Humanidades» -- Liberal Arts College
+
+## Challenges
+
+-   Lack of Resources
+-   Language Barriers
+-   Arithmophobia
+-   Technophobia
+
+## Why Care?
+
+-   Lack of resources should not hinder entrance
+-   Nor linguistics
+-   Journalists should be statistically literate (critical)
+-   PR people too
+-   English majors need jobs too
+-   Diversity enriches our community
+
+##  Posit.cloud
+
+::: columns
+::: {.column width="60%"}
+
+-   Free version available
+
+-   Stable hardware and config
+
+-   Runs on anything...
+
+Solves the resource issue
+:::
+
+::: {.column width="40%"}
+![](images/olpc.jpg)
+:::
+:::
+
+
+##  Posit.cloud
+
+::: columns
+::: {.column width="60%"}
+
+-   Free version available
+
+-   Stable hardware and config
+
+-   Runs on anything...
+
+Solves the resource issue
+:::
+
+::: {.column width="40%"}
+![](images/pixel-screenshot.png){.absolute top=0 left=600 width="360" height="800"}
+:::
+:::
+
+
+## Language Barriers
+
+In R itself:
+
+## Language Barriers
+
+In R itself:
+
+::: columns
+::: {.column width="50%"}
+```{r}
+#| echo: true
+#| eval: false
+
+mis_datos <-
+  coches |>
+  eligir(cil, disp, fc) |>
+  agrupar_por(cil)|>
+  resumir(
+    disp = promedio(disp),
+    fc = promedio(fc)
+  )
+
+imprimir(mis_datos€disp)
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
+#| eval: false
+#| include: false
+
+my_data <-mtcars |>
+  select(cyl, disp, hp) |>
+  group_by(cyl)|>
+  summarise(
+    disp = mean(disp),
+    hp = mean(hp)
+  )
+
+print(my_data$disp)
+
+```
+:::
+:::
+
+## Language Barriers
+
+In R itself:
+
+::: columns
+::: {.column width="50%"}
+```{r}
+#| echo: true
+#| eval: false
+
+mis_datos <- 
+  coches |>
+  eligir(cil, disp, fc) |>
+  agrupar_por(cil)|>
+  resumir(
+    disp = promedio(disp),
+    fc = promedio(fc)
+  )
+
+imprimir(mis_datos€disp)
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
+#| eval: false
+
+my_data <-
+  mtcars |>
+  select(cyl, disp, hp) |>
+  group_by(cyl)|>
+  summarise(
+    disp = mean(disp),
+    hp = mean(hp)
+  )
+
+print(my_data$disp)
+
+```
+:::
+:::
+
+## Language Barriers
+
+In R itself:
+
+::: columns
+::: {.column width="50%"}
+```{r}
+#| echo: true
+#| eval: false
+
+mis_datos <- 
+  coches |>
+  eligir(cil, disp, fc) |>
+  agrupar_por(cil)|>
+  resumir(
+    disp = promedio(disp),
+    fc = promedio(fc)
+  )
+
+imprimir(mis_datos€disp)
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
+#| eval: false
+
+my_data <-
+  mtcars |>
+  select(cyl, disp, hp) |>
+  group_by(cyl)|>
+  summarise(
+    disp = mean(disp),
+    hp = mean(hp)
+  )
+
+print(my_data$disp)
+
+```
+:::
+:::
+
+-   Solution impractical / counter-productive
+-   Steeper learning curve
+
+## Language Barriers
+
+Interface:
+
+::: columns
+::: {.column width="50%"}
+![](images/ui-interface-french.png)
+:::
+
+::: {.column width="50%"}
+-   As of September 2023
+
+-   Experimental feature
+
+-   Two languages available
+
+    -   English
+
+    -   French
+:::
+:::
+
+## Language Barriers
+
+Teaching materials:
+
+![](images/metodos-cuantitativos.png)
+
+## Arithmophobia
+
+-   Curriculum reorganization
+
+-   Use of relevant data
+
+-   Pedadogical devices
+
+## Curriculum
+
+```{r}
+library(ggplot2)
+library(ggdark)
+theme_set(ggdark::dark_theme_void()+
+  
+   theme(panel.background = element_rect( fill = "#191919" , color= "#191919"))
+)
+update_geom_defaults("text",list(cex=7) )
+
+my_cex <- 7
+
+my_data <- 
+  tibble::tribble(~x, ~Chapter,~Topic,
+        1, 1, "Populations and Samples",
+        1, 2, "Frequency Distributions",
+        1, 3, "Central Limit Theorem",
+        1, 4, "The Normal Distribution",
+        1, 5, "Parameter Estimation",
+        1, 6, "Hypothesis Testing",
+        1, 7, "Paremetric Tests",
+        1, 8, "Non-Parametic Tests",
+        1, 9, "Chi-Square",
+        1, 10, "Correlations"
+         )
+
+my_data2 <- 
+  tibble::tribble(~x, ~Chapter,~Topic,
+        3, 1, "Populations and Samples",
+        3, 2, "Frequency Distributions",
+        3, 3, "Hypothesis Testing",
+        3, 4, "Chi-Square",
+        3, 5, "Central Limit Theorem",
+        3, 6, "Non-Parametic Tests",
+        3, 7, "Correlations",
+        3, 8, "The Normal Distribution",
+        3, 9, "Parameter Estimation",
+        3, 10, "Paremetric Tests"
+         )
+
+my_data |> 
+  ggplot(aes(x=x, y=Chapter, label = paste0(Chapter,". ",Topic)))+
+  geom_text(hjust = 0, cex = my_cex )+
+  scale_y_reverse()+
+  xlim(1,3)
+  
+```
+
+## Curriculum
+
+```{r}
+moves <- tibble::tribble(
+  ~y, ~yend,
+  1,1,
+  2,2,
+  6,3,
+  9,4,
+  3,5,
+  8,6,
+  7,10,
+  9,4,
+  10,7,
+  4,8,
+  5,9
+  
+)
+
+my_data |> 
+  ggplot(aes(x=x, y=Chapter, label = paste0(Chapter,". ",Topic)))+
+  geom_text(hjust = 0 )+
+  scale_y_reverse()+
+  xlim(1,4)+
+  geom_text(data=my_data2, hjust = 0, cex = my_cex)+
+  annotate("segment"
+           ,x=2.2,xend=2.9 ,y=moves$y,yend=moves$yend, arrow = arrow(type = "closed",length = unit(0.15, "inches")))+
+  annotate("point",x=2.2,y=moves$y)
+```
+
+## Popper
+
+## Chi Square
+
+## Relevant Data
+
+```{r}
+#| warning: false
+# CH04 = Sexo
+# ITF = Ingreso Total Familiar
+
+my_data <- readr::read_delim(here::here("data/EPH_usu_1er_Trim_2023_txt/usu_individual_T123.txt"), delim = ";")
+
+```
+
+
+## Pedagogogical Devices
+
+-   Live coding
+-   Schadenfreude
+
+## What we Teach
+
+```{r}
+#| fig-width: 7.85
+#| fig-height: 5
+#| fig-align: center
+
+library(ggplot2)
+
+my_data <- tibble::tribble(
+   ~x, ~y, ~Fill, ~Text,
+   3,3, "red", "Domain",
+   2,5, "blue", "Coding",
+   4,5, "green", "Stats"
+  
+)
+
+venn <- my_data |> 
+  ggplot(aes(x,y,label=Text, color = Fill))+
+  geom_point(size = 100, alpha=.4)+
+  coord_cartesian(xlim = c(-2,9), ylim=c(0,7))+
+  theme(legend.position = "none")+
+  # Add manual color scale here
+  annotate("text",
+           x=c(0,4.5,2.5,2.5),
+           y=c(5.5,5.5,2,4.5), 
+           label = c("Coding","Stats","Domain","  Data\nScience"),hjust=c(0,0,0,0))
+venn
+
+```
+
+
+## What we Teach
+
+```{r}
+#| fig-width: 7.85
+#| fig-height: 5
+#| fig-align: center
+my_arrow <- arrow(type = "open",length = unit(0.15, "inches"))
+venn <- venn +
+  annotate("segment",x=7,xend=5.5,y=7,yend=5.5,lwd=1, arrow = my_arrow)+
+  annotate("segment",x=7,xend=1.5, y=7, yend=5.5, lwd=1,arrow = my_arrow)+
+  annotate("text", x=7,y=7,label="Teacher",hjust=0)
+venn
+```
+
+
+## Student is the Expert
+
+```{r}
+#| fig-width: 7.85
+#| fig-height: 5
+#| fig-align: center
+
+venn+
+   annotate("segment",x = 0,xend=2.4,y=1,yend=2,lwd=1, arrow = my_arrow)+
+  annotate("text",x=0,y=1,label="Student",hjust=1,cex=10)
+```
+
+
+## Student is the expert
+
+-   Matías
+-   Camila
+
+## Summary
+
+-   Be relevant, be real, be there
+    -   Curriculum
+    -   Teaching materials
+    -   Data
+    -   Pedagogy
+-   Keep supporting those who teach Data Science
