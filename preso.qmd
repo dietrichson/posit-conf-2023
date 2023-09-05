@@ -2,6 +2,8 @@
 title: "Teaching Data Science in Adverse Circumstances"
 subtitle: "Posit Cloud and Quarto to the Rescue"
 author: "Aleksander Dietrichson, PhD"
+bibliography: references.bib
+suppress-bibliography: true 
 format:
   revealjs: 
     theme: dark
@@ -288,7 +290,7 @@ Teaching materials:
 
 -   Use of relevant data
 
--   Pedadogical devices
+-   Pedagogical devices
 
 ## Curriculum
 
@@ -468,19 +470,139 @@ venn+
 
 ## Student is the Expert
 
-### Matías Salto
+::: columns
+::: {.column width="50%"}
+### Matias Salto:
+
+-   Billboards in the BA subway
+
+-   Warm/Cold colors \~ product
+
+-   Collects data on cellphone
+
+    ![](matias-images/Seremix.jpeg){width="400"}
+:::
+
+::: {.column width="50%"}
+```{r}
+library(magick)
+image <- image_read(here::here("matias-images/Seremix.jpeg")) 
+```
+
+```{r}
+#| echo: true
+image |> 
+  as.raster() |> 
+  as.vector() |> 
+  head(10)
+
+```
+:::
+:::
 
 ## Student is the Expert
 
-### Camila Ramírez
+```{r}
+#| include: false
+library(magick)
+source(here::here("R/color-analysis.R"))
+source(here::here("R/color-bar-plot.R"))
+my_files <- dir(here::here("matias-images"),full.names = TRUE)
+```
+
+::: {layout-ncol="3"}
+![](matias-images/Actron%202.jpeg){width="300"}
+
+![](matias-images/KitKat.jpeg){width="300"}
+
+![](matias-images/Movistar%202.jpeg){width="300"}
+
+```{r}
+#| fig-height: 3
+image_read(my_files[1]) |> 
+  image_crop(geometry_area(200,600,200,0)) |> 
+  color_analysis() |> 
+  color_bar_plot()
+```
+
+```{r}
+#| fig-height: 3
+image_read(my_files[3]) |> 
+  image_crop(geometry_area(600,200,50,100)) |> 
+  color_analysis() |> 
+  color_bar_plot()
+```
+
+```{r}
+#| fig-height: 3
+image_read(my_files[5]) |> 
+  image_crop(geometry_area(300,300,100,50)) |> 
+   color_analysis() |> 
+   color_bar_plot()
+```
+:::
+
+$$
+logit(p_i) \sim \color{red}\blacksquare+\color{green}\blacksquare+\color{blue}\blacksquare +  ...
+$$
+
+@salto
+
+## Student is the Expert
+
+::: columns
+::: {.column width="50%"}
+### Camila Ramírez:
 
 -   Animated Short Film
--   Everyday life
--   Sound, but not verbal. (Visual and non-verbal language)
--   Aethetics
--   Multimodal Discourse Analysis
--   Cultural Studies
--   Colors are semiotic resources
+-   Visual language
+-   Color as a semiotic resource
+:::
+
+::: {.column width="50%"}
+![](video-frames/image_000123.jpg){width="640"}
+:::
+:::
+
+## Student is the Expert
+
+::: columns
+::: {.column width="50%"}
+### Camila Ramírez:
+
+-   Animated Short Film
+-   Visual language
+-   Color as a semiotic resource
+:::
+
+::: {.column width="50%"}
+![](video-frames/image_000123.jpg){width="640"}
+:::
+:::
+
+::: {layout-nrow="2"}
+![](video-frames/image_000300.jpg){width="128"} ![](video-frames/image_000500.jpg){width="128"} ![](video-frames/image_000700.jpg){width="128"} ![](video-frames/image_000900.jpg){width="128"} ![](video-frames/image_001200.jpg){width="128"} ![](video-frames/image_001500.jpg){width="128"} ![](video-frames/image_001800.jpg){width="128"} ![](video-frames/image_002100.jpg){width="128"} ![](video-frames/image_002300.jpg){width="128"} ![](video-frames/image_002500.jpg){width="128"} ![](video-frames/image_002700.jpg){width="128"} ![](video-frames/image_002900.jpg){width="128"} ![](video-frames/image_003000.jpg){width="128"} ![](video-frames/image_003100.jpg){width="128"}
+:::
+
+## Student is the Expert
+
+```{r}
+#| fig-height: 2.8
+my_analysis <- readr::read_rds(here::here("data/analysis_01.rds"))
+my_analysis |> 
+  select(R,G,B) |> 
+  mutate(frame_number = row_number()) |>
+  pivot_longer(cols = c(R,G,B),names_to = "Color") -> analysis_long
+p <- analysis_long |> 
+  ggplot(aes(frame_number,value, color = Color))+
+  scale_color_manual(values = c(B="blue",G="green",R="red"))+
+   theme(legend.position="none")
+p+geom_line()
+```
+
+::: {layout-nrow="2"}
+![](video-frames/image_000300.jpg){width="128"} ![](video-frames/image_000500.jpg){width="128"} ![](video-frames/image_000700.jpg){width="128"} ![](video-frames/image_000900.jpg){width="128"} ![](video-frames/image_001200.jpg){width="128"} ![](video-frames/image_001500.jpg){width="128"} ![](video-frames/image_001800.jpg){width="128"} ![](video-frames/image_002100.jpg){width="128"} ![](video-frames/image_002300.jpg){width="128"} ![](video-frames/image_002500.jpg){width="128"} ![](video-frames/image_002700.jpg){width="128"} ![](video-frames/image_002900.jpg){width="128"} ![](video-frames/image_003000.jpg){width="128"} ![](video-frames/image_003100.jpg){width="128"} @rodriguez
+:::
 
 ## Paradigm Shift
 
@@ -522,7 +644,7 @@ hex_diagram <- my_data |>
 hex_diagram
 ```
 
-## Summary
+## Conclusions
 
 ::: columns
 ::: {.column width="50%"}
@@ -535,11 +657,8 @@ hex_diagram
 :::
 
 ::: {.column width="50%"}
-
 ```{r}
 hex_diagram
 ```
 :::
 :::
-
-## 
