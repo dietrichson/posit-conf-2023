@@ -82,11 +82,10 @@ format:
 -   English majors need jobs too
 -   Diversity enriches our community
 
-##  Posit.cloud
+## Posit.cloud
 
 ::: columns
 ::: {.column width="60%"}
-
 -   Free version available
 
 -   Stable hardware and config
@@ -101,12 +100,10 @@ Solves the resource issue
 :::
 :::
 
-
-##  Posit.cloud
+## Posit.cloud
 
 ::: columns
 ::: {.column width="60%"}
-
 -   Free version available
 
 -   Stable hardware and config
@@ -117,10 +114,9 @@ Solves the resource issue
 :::
 
 ::: {.column width="40%"}
-![](images/pixel-screenshot.png){.absolute top=0 left=600 width="360" height="800"}
+![](images/pixel-screenshot.png){.absolute top="0" left="600" width="360" height="800"}
 :::
 :::
-
 
 ## Language Barriers
 
@@ -373,7 +369,23 @@ my_data |>
   annotate("point",x=2.2,y=moves$y)
 ```
 
-## Popper
+## Hypothesis Testing
+
+::: columns
+::: {.column width="50%"}
+![Karl Popper - Philosopher](images/220px-Karl_Popper.jpg){fig-align="left"}
+:::
+
+::: {.column width="50%"}
+-   The Scientific Method
+
+-   Falsifiability
+
+-   Hypothesis Testing
+
+-   Paradigm Shift
+:::
+:::
 
 ## Chi Square
 
@@ -388,8 +400,7 @@ my_data <- readr::read_delim(here::here("data/EPH_usu_1er_Trim_2023_txt/usu_indi
 
 ```
 
-
-## Pedagogogical Devices
+## Pedagogical Devices
 
 -   Live coding
 -   Schadenfreude
@@ -405,26 +416,29 @@ library(ggplot2)
 
 my_data <- tibble::tribble(
    ~x, ~y, ~Fill, ~Text,
-   3,3, "red", "Domain",
-   2,5, "blue", "Coding",
+   3,3, "blue", "Domain",
+   2,5, "red", "Coding",
    4,5, "green", "Stats"
   
 )
 
 venn <- my_data |> 
   ggplot(aes(x,y,label=Text, color = Fill))+
+    geom_point(size = 102)+
   geom_point(size = 100, alpha=.4)+
+  
   coord_cartesian(xlim = c(-2,9), ylim=c(0,7))+
+  scale_color_manual(values = c(red = "red","green"="green","blue" = "blue"))+
   theme(legend.position = "none")+
   # Add manual color scale here
   annotate("text",
            x=c(0,4.5,2.5,2.5),
            y=c(5.5,5.5,2,4.5), 
            label = c("Coding","Stats","Domain","  Data\nScience"),hjust=c(0,0,0,0))
+venn_orig <- venn # Cache for later use
 venn
 
 ```
-
 
 ## What we Teach
 
@@ -440,7 +454,6 @@ venn <- venn +
 venn
 ```
 
-
 ## Student is the Expert
 
 ```{r}
@@ -453,17 +466,80 @@ venn+
   annotate("text",x=0,y=1,label="Student",hjust=1,cex=10)
 ```
 
+## Student is the Expert
 
-## Student is the expert
+### Matías Salto
 
--   Matías
--   Camila
+## Student is the Expert
+
+### Camila Ramírez
+
+-   Animated Short Film
+-   Everyday life
+-   Sound, but not verbal. (Visual and non-verbal language)
+-   Aethetics
+-   Multimodal Discourse Analysis
+-   Cultural Studies
+-   Colors are semiotic resources
+
+## Paradigm Shift
+
+```{r}
+#| fig-width: 7.85
+#| fig-height: 5
+#| fig-align: center
+venn_orig
+```
+
+## Paradigm Shift
+
+```{r}
+library(dplyr)
+my_data <- tibble::tribble(
+   ~x, ~y, ~Fill, ~Text,
+   3,1.6, "blue", "Domain",
+   1.5,4.85, "red", "Coding",
+   4.45,4.85, "green", "Stats"
+  
+) |> mutate(y=y+.1) #nudge
+
+
+hex_diagram <- my_data |> 
+  ggplot(aes(x,y,label=Text, color = Fill))+
+   # geom_hex(linewidth = 80, color = "white")+
+    geom_hex(linewidth=79, alpha = .7)+
+
+  coord_cartesian(xlim = c(-2,9), ylim=c(0,7))+
+  scale_color_manual(values = c(red = "red","green"="green","blue" = "blue"))+
+  theme(legend.position = "none")+
+  geom_text(hjust=.5, color = "White", cex = 10)
+    # annotate("text",
+    #        x=c(1,4.5,2.5,2.5),
+    #        y=c(4.5,4.5,1.5,.5), 
+    #        label = c("Coding","Stats","Domain",""),hjust = .5)
+
+
+hex_diagram
+```
 
 ## Summary
 
+::: columns
+::: {.column width="50%"}
 -   Be relevant, be real, be there
     -   Curriculum
     -   Teaching materials
     -   Data
     -   Pedagogy
 -   Keep supporting those who teach Data Science
+:::
+
+::: {.column width="50%"}
+
+```{r}
+hex_diagram
+```
+:::
+:::
+
+## 
