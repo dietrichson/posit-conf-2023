@@ -392,6 +392,32 @@ my_data |>
 
 ## Chi Square
 
+::: columns
+::: {.column width="50%"}
+-   Requires four numbers
+
+-   Nominal data
+
+```{r}
+#| echo: true
+rbind(c(762, 468), c(484, 477)) |> 
+chisq.test()
+```
+:::
+
+::: {.column width="50%"}
+-   Visualize with a line
+
+-   Base R
+
+```{r}
+#| echo: true
+rbind(c(762, 468), c(484, 477)) |> 
+  barplot()
+```
+:::
+:::
+
 ## Relevant Data
 
 ```{r}
@@ -438,7 +464,7 @@ colnames(tmp) <- c("Stat","1","2")
   knitr::kable(tmp,digits = 0)
 ```
 
-Source: @indec
+*Source: @indec*
 
 ## Pedagogical Devices
 
