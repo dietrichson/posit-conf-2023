@@ -28,7 +28,7 @@ format:
 
 -   GDP/Capita:  \~13K
 
--   Poverty rate: 46%
+-   Poverty rate: \~40%
 
 -   Inflation: 113.4%
 :::
@@ -46,7 +46,7 @@ format:
 
 -   Largest Metro Area
 
--   Home to \~ 14M
+-   Home to \~ 15.5M
 :::
 
 ::: {.column width="60%"}
@@ -296,6 +296,7 @@ Teaching materials:
 
 ```{r}
 library(ggplot2)
+library(dplyr)
 library(ggdark)
 theme_set(ggdark::dark_theme_void()+
   
@@ -394,20 +395,57 @@ my_data |>
 ## Relevant Data
 
 ```{r}
+#| include: false
 #| warning: false
-# CH04 = Sexo
+# CH04 = Sexo (Varón = 1, Mujer = 2 )
 # ITF = Ingreso Total Familiar
 
-my_data <- readr::read_delim(here::here("data/EPH_usu_1er_Trim_2023_txt/usu_individual_T123.txt"), delim = ";")
+indec_data <- readr::read_delim(
+  here::here("data/EPH_usu_1er_Trim_2023_txt/usu_individual_T123.txt"), delim = ";"
+  )
+```
+
+```{r}
+#| echo: true
+#| eval: false
+indec_data |> 
+  group_by(CH04) |> # CH04 = Gender 1 = Male, 2 = Female
+  summarize(
+    Mediat = median(ITF), # Total Familty Income
+    Mean = mean(ITF),
+    SD = sd(ITF)
+  )
 
 ```
+
+...
+
+```{r}
+# CH04 = Gender 
+# (Male = 1, Female = 2)
+# ITF = Total Family Income
+library(tidyr)
+indec_data |> 
+  group_by(CH04) |>
+  summarize(
+    Median = median(ITF),
+    Mean = mean(ITF),
+    SD = sd(ITF)
+  ) |> pivot_longer(c(Median,Mean,SD)) ->tmp
+  
+tmp <- cbind(tmp[1:3,2:3],tmp[4:6,3])
+colnames(tmp) <- c("Stat","1","2")
+  knitr::kable(tmp,digits = 0)
+```
+
+Source: @indec
 
 ## Pedagogical Devices
 
 -   Live coding
 -   Schadenfreude
 
-## What we Teach
+## What We Teach
 
 ```{r}
 #| fig-width: 7.85
@@ -442,7 +480,7 @@ venn
 
 ```
 
-## What we Teach
+## What We Teach
 
 ```{r}
 #| fig-width: 7.85
@@ -472,7 +510,7 @@ venn+
 
 ::: columns
 ::: {.column width="50%"}
-### Matias Salto:
+### Matías Salto:
 
 -   Billboards in the BA subway
 
@@ -554,7 +592,7 @@ $$
 ::: {.column width="50%"}
 ### Camila Ramírez:
 
--   Animated Short Film
+-   Animated Short Films
 -   Visual language
 -   Color as a semiotic resource
 :::
