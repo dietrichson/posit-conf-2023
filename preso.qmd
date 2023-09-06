@@ -438,7 +438,7 @@ indec_data <- readr::read_delim(
 indec_data |> 
   group_by(CH04) |> # CH04 = Gender 1 = Male, 2 = Female
   summarize(
-    Mediat = median(ITF), # Total Familty Income
+    Median = median(ITF), # Total Familty Income
     Mean = mean(ITF),
     SD = sd(ITF)
   )
@@ -619,7 +619,7 @@ $$
 ::: {.column width="50%"}
 ### Camila Ramírez:
 
--   Animated Short Films
+-   Animated Shorts
 -   Visual language
 -   Color as a semiotic resource
 :::
@@ -635,7 +635,7 @@ $$
 ::: {.column width="50%"}
 ### Camila Ramírez:
 
--   Animated Short Film
+-   Animated Shorts
 -   Visual language
 -   Color as a semiotic resource
 :::
