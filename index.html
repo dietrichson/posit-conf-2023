@@ -693,9 +693,9 @@ X-squared = 29.06, df = 1, p-value = 7.019e-08</code></pre>
 <h2>Relevant Data</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>indec_data <span class="sc">|&gt;</span> </span>
-<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">group_by</span>(CH04) <span class="sc">|&gt;</span> <span class="co"># CH04 = Gender 1 = Male, 2 = Female</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">group_by</span>(CH04) <span class="sc">|&gt;</span> <span class="co"># CH04 = Gender: 1 = Male, 2 = Female</span></span>
 <span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb9-4"><a href="#cb9-4"></a>    <span class="at">Median =</span> <span class="fu">median</span>(ITF), <span class="co"># Total Familty Income</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>    <span class="at">Median =</span> <span class="fu">median</span>(ITF), <span class="co"># Total Family Income</span></span>
 <span id="cb9-5"><a href="#cb9-5"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(ITF),</span>
 <span id="cb9-6"><a href="#cb9-6"></a>    <span class="at">SD =</span> <span class="fu">sd</span>(ITF)</span>
 <span id="cb9-7"><a href="#cb9-7"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
