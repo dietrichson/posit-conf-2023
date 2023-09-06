@@ -4,6 +4,7 @@ subtitle: "Posit Cloud and Quarto to the Rescue"
 author: "Aleksander Dietrichson, PhD"
 bibliography: references.bib
 suppress-bibliography: true 
+output-file: index.html
 format:
   revealjs: 
     theme: dark
