@@ -1,0 +1,35 @@
+---
+title: "Images Matias ETL"
+format: html
+editor: visual
+---
+
+## 
+
+```{r}
+library(magick)
+source(here::here("R/color-analysis.R"))
+source(here::here("R/color-bar-plot.R"))
+my_files <- dir(here::here("matias-images"),full.names = TRUE)
+```
+
+```{r}
+image_read(my_files[1]) |> 
+  image_crop(geometry_area(200,600,200,0)) |> 
+  color_analysis() |> 
+  color_bar_plot()
+```
+
+```{r}
+image_read(my_files[3]) |> 
+  image_crop(geometry_area(600,200,50,100)) |> 
+  color_analysis() |> 
+  color_bar_plot()
+```
+
+```{r}
+image_read(my_files[5]) |> 
+  image_crop(geometry_area(300,300,100,50)) |> 
+   color_analysis() |> 
+   color_bar_plot()
+```
