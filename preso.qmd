@@ -401,7 +401,10 @@ my_data |>
 
 ```{r}
 #| echo: true
-rbind(c(762, 468), c(484, 477)) |> 
+rbind( # M, F
+  c(762, 468), # Pro 
+  c(484, 477)  # Con
+  ) |> 
 chisq.test()
 ```
 :::
@@ -413,7 +416,10 @@ chisq.test()
 
 ```{r}
 #| echo: true
-rbind(c(762, 468), c(484, 477)) |> 
+rbind( # M, F
+  c(762, 468), # Pro 
+  c(484, 477)  # Con
+  ) |> 
   barplot()
 ```
 :::

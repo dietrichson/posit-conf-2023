@@ -664,8 +664,11 @@ Aleksander Dietrichson, PhD
 <li><p>Nominal data</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">762</span>, <span class="dv">468</span>), <span class="fu">c</span>(<span class="dv">484</span>, <span class="dv">477</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">chisq.test</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">rbind</span>( <span class="co"># M, F</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">c</span>(<span class="dv">762</span>, <span class="dv">468</span>), <span class="co"># Pro </span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">c</span>(<span class="dv">484</span>, <span class="dv">477</span>)  <span class="co"># Con</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="fu">chisq.test</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's Chi-squared test with Yates' continuity correction
@@ -680,8 +683,11 @@ X-squared = 29.06, df = 1, p-value = 7.019e-08</code></pre>
 <li><p>Base R</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">762</span>, <span class="dv">468</span>), <span class="fu">c</span>(<span class="dv">484</span>, <span class="dv">477</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">barplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">rbind</span>( <span class="co"># M, F</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">c</span>(<span class="dv">762</span>, <span class="dv">468</span>), <span class="co"># Pro </span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">c</span>(<span class="dv">484</span>, <span class="dv">477</span>)  <span class="co"># Con</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb8-5"><a href="#cb8-5"></a>  <span class="fu">barplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img data-src="preso_files/figure-revealjs/unnamed-chunk-10-1.png" width="960"></p>
 </div>
